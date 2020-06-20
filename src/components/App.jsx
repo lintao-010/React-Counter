@@ -1,5 +1,5 @@
 import React from "react";
-import { INCREMENT, REDUCTION } from "../redux/action-types";
+import { INCREMENT, DECREMENT } from "../redux/action-types";
 
 export default class App extends React.Component {
 
@@ -10,15 +10,15 @@ export default class App extends React.Component {
 
   minus = () => {
     let number = this.select.value * 1
-    let {count}  = this.props.store.getState()
+    let { count } = this.props.store.getState()
     if (count > 0) {
-      this.props.store.dispatch({ type: REDUCTION, data: number })
+      this.props.store.dispatch({ type: DECREMENT, data: number })
     }
   }
 
   addIfOdd = () => {
     let number = this.select.value * 1
-    let {count}  = this.props.store.getState()
+    let { count } = this.props.store.getState()
     if (count % 2 !== 0) {
       this.props.store.dispatch({ type: INCREMENT, data: number })
     }

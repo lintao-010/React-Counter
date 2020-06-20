@@ -1,2 +1,2 @@
 export const INCREMENT = "INCREMENT"
-export const REDUCTION = "REDUCTION"
+export const DECREMENT = "DECREMENT"

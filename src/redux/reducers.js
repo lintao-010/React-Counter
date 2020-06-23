@@ -1,15 +1,16 @@
 import { INCREMENT, DECREMENT } from "./action-types";
 
-export function counter(state={count:0}, action){
+export function counter(state={count: 0}, action){
     console.log("counter reducer", state, action)
     switch (action.type) {
         case INCREMENT:
-            state.count += action.data
-            return state
+            let newState = {...state}
+            newState.count += action.data
+            return newState
         case DECREMENT:
-            state.count -= action.data
-            return state
+            return {count: state.count - action.data}
         default:
             return state
     }
+
 }

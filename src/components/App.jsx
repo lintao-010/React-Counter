@@ -1,26 +1,35 @@
 import React from "react";
-import * as actions from "../redux/actions";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-export default class App extends React.Component {
+import { increment, decrement } from "../redux/actions";
+
+class App extends React.Component {
+
+  static propTypes = {
+    count: PropTypes.number.isRequired,
+    increment: PropTypes.func.isRequired,
+    decrement: PropTypes.func.isRequired
+  }
 
   add = () => {
     let number = this.select.value * 1
-    this.props.store.dispatch(actions.increment(number))
+    this.props.increment(number)
   }
 
   minus = () => {
     let number = this.select.value * 1
-    let { count } = this.props.store.getState()
+    let { count } = this.props
     if (count > 0) {
-      this.props.store.dispatch(actions.decrement(number))
+      this.props.decrement(number)
     }
   }
 
   addIfOdd = () => {
     let number = this.select.value * 1
-    let { count } = this.props.store.getState()
+    let { count } = this.props
     if (count % 2 !== 0) {
-      this.props.store.dispatch(actions.increment(number))
+      this.props.increment(number)
     }
   }
 
@@ -29,7 +38,9 @@ export default class App extends React.Component {
   }
 
   render() {
-    let { count } = this.props.store.getState()
+    let { count } = this.props
+    console.log("render run")
+    console.log(count)
 
     return (
       <div>
@@ -47,3 +58,10 @@ export default class App extends React.Component {
     )
   }
 }
+
+export default connect(
+  state => {
+    console.log("state", state)
+    return state},
+  { increment, decrement }
+)(App)

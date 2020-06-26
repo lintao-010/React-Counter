@@ -1,15 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 
-import { increment, decrement } from "../redux/actions";
-
-class App extends React.Component {
+export default class Counter extends React.Component {
 
   static propTypes = {
     count: PropTypes.number.isRequired,
     increment: PropTypes.func.isRequired,
-    decrement: PropTypes.func.isRequired
+    decrement: PropTypes.func.isRequired,
+    asyncIncrement: PropTypes.func.isRequired
   }
 
   add = () => {
@@ -34,14 +32,12 @@ class App extends React.Component {
   }
 
   addAsync = () => {
-    setTimeout(this.add, 1000);
+    let number = this.select.value * 1
+    this.props.asyncIncrement(number)
   }
 
   render() {
     let { count } = this.props
-    console.log("render run")
-    console.log(count)
-
     return (
       <div>
         <h2>Click {count} times</h2>
@@ -58,10 +54,3 @@ class App extends React.Component {
     )
   }
 }
-
-export default connect(
-  state => {
-    console.log("state", state)
-    return state},
-  { increment, decrement }
-)(App)

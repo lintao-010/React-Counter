@@ -7,7 +7,8 @@ export default class Counter extends React.Component {
     count: PropTypes.number.isRequired,
     increment: PropTypes.func.isRequired,
     decrement: PropTypes.func.isRequired,
-    asyncIncrement: PropTypes.func.isRequired
+    asyncIncrement: PropTypes.func.isRequired,
+    addItems: PropTypes.func.isRequired
   }
 
   add = () => {
@@ -36,8 +37,13 @@ export default class Counter extends React.Component {
     this.props.asyncIncrement(number)
   }
 
+  addItems = () => {
+    this.props.addItems()
+  }
+
   render() {
-    let { count } = this.props
+    debugger
+    let { count, attr2 } = this.props
     return (
       <div>
         <h2>Click {count} times</h2>
@@ -50,6 +56,8 @@ export default class Counter extends React.Component {
         <button className="btn btn-default" type="button" onClick={this.minus}> - </button>
         <button className="btn btn-default" type="button" onClick={this.addIfOdd}>Increment if odd</button>
         <button className="btn btn-default" type="button" onClick={this.addAsync}>Increment async</button>
+        <button className="btn btn-default" type="button" onClick={this.addItems}>addItems</button>
+        <p>Attr2: {attr2}</p>
       </div>
     )
   }

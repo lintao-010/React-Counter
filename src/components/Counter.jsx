@@ -5,6 +5,8 @@ export default class Counter extends React.Component {
 
   static propTypes = {
     count: PropTypes.number.isRequired,
+    attr2: PropTypes.array.isRequired,
+
     increment: PropTypes.func.isRequired,
     decrement: PropTypes.func.isRequired,
     asyncIncrement: PropTypes.func.isRequired,

@@ -2,4 +2,4 @@
 
 ## My thoughts about this react gadget
 
-![thoughts](.\others\ReactThoughts.png/)
+![thoughts](./other/ReactThoughts.png/)
